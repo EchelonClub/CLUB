@@ -1,10 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mail import Mail, Message
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from .env file
-load_dotenv()
 
 app = Flask(__name__)
 
@@ -13,9 +8,9 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Gmail SMTP server
 app.config['MAIL_PORT'] = 465  # SSL Port
 app.config['MAIL_USE_TLS'] = False  # Use TLS (False as we're using SSL)
 app.config['MAIL_USE_SSL'] = True  # Enable SSL
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')  # Gmail address from .env
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Gmail app-specific password from .env
-app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')  # Default sender email
+app.config['MAIL_USERNAME'] = 'your-email@gmail.com'  # Replace with your Gmail address
+app.config['MAIL_PASSWORD'] = 'your-app-password'  # Replace with your Gmail app-specific password
+app.config['MAIL_DEFAULT_SENDER'] = 'your-email@gmail.com'  # Replace with your default sender email
 
 mail = Mail(app)
 
@@ -97,6 +92,11 @@ def thank_you():
 @app.route('/team')
 def team():
     return render_template('team.html')  # Renders the Team page
+
+#Clubacheivements Route
+@app.route('/clubacheivements')
+def clubacheivements():
+    return render_template('clubacheivements.html') # Renders the clubacheivements page
 
 if __name__ == '__main__':
     app.run(debug=True)
